@@ -21,10 +21,10 @@ RUN apt-get -y install default-jre \
 RUN mkdir /work-directory
 
 ### Copy contents to work directory
-ADD . /work-directory
+COPY . /work-directory
 
 ### Change executable permission for LBEEP
-RUN chmod +x LBEEP
+RUN chmod +x LBEEP 
 
 ### create temp folder in work directory 
 RUN cd /work-directory 
@@ -33,8 +33,3 @@ RUN mkdir temp
 RUN chmod 766 temp
 ### run the program as per users wish 
 
-
-### Testing
-#ENTRYPOINT ["/bin/echo"]
-
-#CMD ["hello, this is a test image and running the container from it"]
