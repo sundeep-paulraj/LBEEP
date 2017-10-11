@@ -1,5 +1,5 @@
 # Dockerfile to build and run LBEEP application
-# Version 1
+# Version 0.2
 
 # Pull the ubuntu image from the repository
 FROM ubuntu:latest
@@ -10,26 +10,17 @@ LABEL application="LBEEP" \
       version="1.0"
 
 # Update image
-RUN apt-get -y update
-
-# Installing openjdk
-RUN apt-get -y install default-jre \
-                       apt-utils \
-                       default-jdk
-
-### Create a work directory
-RUN mkdir /work-directory
+RUN apt-get -y update \
+    && install default-jre \
+    apt-utils \
+    default-jdk \
+    && mkdir /work-directory
 
 ### Copy contents to work directory
 COPY . /work-directory
 
 ### Change executable permission for LBEEP
-RUN chmod +x LBEEP 
-
-### create temp folder in work directory 
-RUN cd /work-directory 
-RUN mkdir temp
-### assign read and write permission to temp folder
-RUN chmod 766 temp
-### run the program as per users wish 
-
+RUN chmod +x LBEEP  \
+    && cd /work-directory \
+    && mkdir temp
+    && chmod 766 temp
